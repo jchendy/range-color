@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Range picker</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -39,18 +39,7 @@
   <div class="container">
 
 <div class="row">
-  <div class="col-md-3">
-    <h3>Stats</h3>
-    <p>
-      Bet/raise (value): {{getStat("bet-value") | number:2}}% <br />
-      Bet/raise (bluff): {{getStat("bet-bluff") | number:2}}% <br />
-      Call: {{getStat("call") | number:2}}% <br />
-      Fold: {{getStat("fold") | number:2}}% <br />
-      Check: {{getStat("check") | number:2}}% <br />
-      N/A (not in range): {{getStat("na") | number:2}}% <br />
-    </p>
 
-  </div>
   <div class="col-md-9">
     <h3>Your range</h3>
     <div style="float: left">
@@ -61,13 +50,12 @@
       </div>
     </div>
     <div style="float: left; margin-left: 7px;">
-        <span ng-repeat = "action in ['bet-value', 'bet-bluff', 'call', 'fold', 'check', 'na']">
-          <button type="button" ng-class="modeButtonClass(action)" ng-click="setActiveSelector(action)" class="btn btn-action-select btn-s">{{action}}</button>
+        <span ng-repeat = "action in ['bet-value', 'bet-bluff', 'call', 'fold', 'na']">
+          <button type="button" ng-class="modeButtonClass(action)" ng-click="setActiveSelector(action)" class="btn btn-action-select btn-s">{{getName(action)}} {{getStat(action) | number:2}}%</button>
           <span ng-if="action == 'raise'"></span>
           <br />
         </span>
       <br />
-      <button type="button" ng-click="selectRemainder()" class="btn btn-s btn-select">Select remainder</button> <br />
       <button type="button" ng-click="selectBroadways()" class="btn btn-s btn-select">Select broadways</button> <br />
       <button type="button" ng-click="selectPPs()" class="btn btn-s btn-select">Select PPs</button> <br />
     </div>

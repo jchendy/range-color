@@ -30,13 +30,22 @@ controller( 'AppController', function( $scope ) {
       return result;
     };    
 
-	$scope.superstat = "yay";
-
-    $scope.activeSelector = "raise";
+    $scope.activeSelector = "bet-value";
 
     $scope.data = {
     	
     };
+
+    $scope.getName = function (action) {
+    	var map = {    		
+    		"bet-value": "Bet or Raise (value)",
+    		"bet-bluff": "Bet or Raise (bluff)",
+    		"call": "Call or check",
+    		"fold": "Fold",
+    		na: "N/A"
+    	}
+    	return map[action];
+    }
 
     $scope.generateHands = function(scenario) {
       var hands = {};
@@ -44,11 +53,11 @@ controller( 'AppController', function( $scope ) {
       for(var i = 0; i < 13; i++) {
         for(var j = 0; j < 13; j++) {
           if (j > i) {
-            hands[$scope.utils.cardRanks[i] + $scope.utils.cardRanks[j] + "s"] = {range: "none"};
-            hands[$scope.utils.cardRanks[i] + $scope.utils.cardRanks[j] + "o"] = {range: "none"};
+            hands[$scope.utils.cardRanks[i] + $scope.utils.cardRanks[j] + "s"] = {range: "na"};
+            hands[$scope.utils.cardRanks[i] + $scope.utils.cardRanks[j] + "o"] = {range: "na"};
           }
         }
-        hands[$scope.utils.cardRanks[i] + $scope.utils.cardRanks[i]] = {range: "none"};
+        hands[$scope.utils.cardRanks[i] + $scope.utils.cardRanks[i]] = {range: "na"};
       }
     }   
 
